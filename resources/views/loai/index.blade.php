@@ -1,3 +1,10 @@
+@extends('backend.layouts.index')
+
+@section('title')
+    Danh sach loai san pham
+@endsection
+
+@section('main-content')
 <h1>Hello first action from LoaiController</h1>
 <table border="1">
     <thead>
@@ -15,3 +22,4 @@
             @endforeach
     </tbody>
 </table>
+@endsection

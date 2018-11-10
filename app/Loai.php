@@ -14,6 +14,7 @@ class Loai extends Model
     protected $primaryKey = 'l_ma';
     protected $dates = ['l_taoMoi','l_capNhat'];
     protected $dateFormat = 'Y-m-d H:i:s';
+    
     public function sanPhamLoai(){
         return $this->hasMany('App\SanPham','l_ma','l_ma');
     }

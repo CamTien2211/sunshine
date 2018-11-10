@@ -82,6 +82,7 @@
                     Laravel
                 </div>
                 <a href="{{ route('danhsachloai.index')}}">Danh sach loai hoa</a>
+                <a href="{{ route('danhsachsanpham.index')}}">Danh sach san pham</a>
                 <div class="links">
                     <a href="https://laravel.com/docs">Documentation</a>
                     <a href="https://laracasts.com">Laracasts</a>
