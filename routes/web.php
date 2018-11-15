@@ -15,8 +15,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 //tencontroller@action
-Route::get('/danhsachloai','LoaiController@index')->name('danhsachloai.index');
-Route::get('/danhsachloai/create','LoaiController@create')->name('danhsachloai.create');
-Route::post('/danhsachloai/create','LoaiController@store')->name('danhsachloai.store');
-Route::get('/danhsachchude','ChuDeController@index');
-Route::get('/danhsachsanpham','SanPhamController@index')->name('danhsachsanpham.index');
+Route::get('/admin/danhsachloai','LoaiController@index')->name('danhsachloai.index');
+Route::get('/admin/danhsachloai/create','LoaiController@create')->name('danhsachloai.create');
+Route::post('/admin/danhsachloai/create','LoaiController@store')->name('danhsachloai.store');
+Route::get('/admin/danhsachchude','ChuDeController@index');
+Route::get('/admin/danhsachsanpham','SanPhamController@index')->name('danhsachsanpham.index');
+Route::get('/admin/danhsachloai/{id}','LoaiController@edit')->name('danhsachloai.edit');
+Route::put('/admin/danhsachloai/{id}','LoaiController@update')->name('danhsachloai.update');
+Route::delete('/admin/danhsachloai/{id}','LoaiController@destroy')->name('danhsachloai.destroy');
+
