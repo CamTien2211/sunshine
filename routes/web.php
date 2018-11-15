@@ -16,5 +16,7 @@ Route::get('/', function () {
 });
 //tencontroller@action
 Route::get('/danhsachloai','LoaiController@index')->name('danhsachloai.index');
+Route::get('/danhsachloai/create','LoaiController@create')->name('danhsachloai.create');
+Route::post('/danhsachloai/create','LoaiController@store')->name('danhsachloai.store');
 Route::get('/danhsachchude','ChuDeController@index');
 Route::get('/danhsachsanpham','SanPhamController@index')->name('danhsachsanpham.index');

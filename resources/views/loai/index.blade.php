@@ -5,7 +5,8 @@
 @endsection
 
 @section('main-content')
-<h1>Hello first action from LoaiController</h1>
+<h1>Hello first action from Lo
+aiController</h1>
 <table border="1">
     <thead>
         <tr>
