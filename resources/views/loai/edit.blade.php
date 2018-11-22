@@ -6,6 +6,15 @@
 
 @section('main-content')
 <h1>Sua loai san pham</h1>
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 
 <form method="post" action="{{ route('danhsachloai.update', ['id' => $loai->l_ma]) }}" >
     <input type="hidden" name="_method" value="PUT" />

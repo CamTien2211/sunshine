@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Loai;
 use DB;
 use Session;
+use App\Http\Requests\LoaiRequest;
 class LoaiController extends Controller
 {
     public function index()
@@ -31,7 +32,20 @@ class LoaiController extends Controller
         return view('loai.edit')->with('loai', $loai);
     }
 
-    public function update(Request $request, $id){
+    public function update(LoaiRequest $request, $id)
+    {
+       /* $validator = Validator::make($request->all(), [
+            'l_ten' => 'required|unique:posts|max:60',
+            'l_taoMoi' => 'required',
+            'l_capNhat' => 'required',
+            'l_trangThai' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect(route('danhsachloai.edit', ['id' => $id])
+                        ->withErrors($validator)
+                        ->withInput();
+        }*/
         $loai = Loai::where("l_ma", $id)->first();
         $loai->l_ten = $request->l_ten;
         $loai->l_taoMoi = $request->l_taoMoi;
