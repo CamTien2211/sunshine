@@ -18,11 +18,13 @@
         </tr>
     </thead>
     <tbody>
-        @foreach($danhsachsanpham as $sanpham)
+        @foreach($danhsachsanpham as $sp)
             <tr>
-                <td>{{ $sanpham->sp_ma }}</td>
-                <td>{{ $sanpham->sp_ten}}</td>
-                <td>{{ $sanpham->l_ma}}</td>
+                <td>{{ $sp->sp_ma }}</td>
+                <td>{{ $sp->sp_ten}}</td>
+                <td><img src="{{ asset('storage/photos/' . $sp->sp_hinh) }}" class="img-list" ></td>
+                <td>{{ $sp->loaisanpham->l_ten }}</td>
+                <td><a href="{{ route('danhsachsanpham.edit',['id' => $sp->sp_ma]) }}">Sua</a></td>
             </tr>
         @endforeach
     </tbody>
