@@ -34,15 +34,15 @@ Thêm mới sản phẩm
     </div>
     <div class="form-group">
         <label for="sp_ten">Tên sản phẩm</label>
-        <input type="text" class="form-control" id="sp_ten" name="sp_ten">
+        <input type="text" class="form-control" id="sp_ten" name="sp_ten" value="{{ old('sp_ten') }}">
     </div>
     <div class="form-group">
         <label for="sp_giaGoc">Giá gốc</label>
-        <input type="text" class="form-control" id="sp_giaGoc" name="sp_giaGoc">
+        <input type="text" class="form-control" id="sp_giaGoc" name="sp_giaGoc" value="{{ old('sp_giaGoc') }}">
     </div>
     <div class="form-group">
         <label for="sp_giaGoc">Giá bán</label>
-        <input type="text" class="form-control" id="sp_giaBan" name="sp_giaBan">
+        <input type="text" class="form-control" id="sp_giaBan" name="sp_giaBan" value="{{ old('sp_giaBan') }}">
     </div>
     <div class="form-group">
         <div class="file-loading">
@@ -52,24 +52,32 @@ Thêm mới sản phẩm
     </div>
     <div class="form-group">
         <label for="sp_thongTin">Thông tin</label>
-        <input type="text" class="form-control" id="sp_thongTin" name="sp_thongTin">
+        <input type="text" class="form-control" id="sp_thongTin" name="sp_thongTin" value="{{ old('sp_thongTin') }}">
     </div>
     <div class="form-group">
         <label for="sp_danhGia">Đánh giá</label>
-        <input type="text" class="form-control" id="sp_danhGia" name="sp_danhGia">
+        <input type="text" class="form-control" id="sp_danhGia" name="sp_danhGia" value="{{ old('sp_danhGia') }}">
     </div>
     <div class="form-group">
         <label for="sp_taoMoi">Ngày tạo mới</label>
-        <input type="text" class="form-control" id="sp_taoMoi" name="sp_taoMoi">
+        <input type="text" class="form-control" id="sp_taoMoi" name="sp_taoMoi" value="{{ old('sp_taoMoi') }}" data-mask-datatime>
     </div>
     <div class="form-group">
         <label for="sp_capNhat">Ngày cập nhật</label>
-        <input type="text" class="form-control" id="sp_capNhat" name="sp_capNhat">
+        <input type="text" class="form-control" id="sp_capNhat" name="sp_capNhat" value="{{ old('sp_capNhat') }}" data-mask-datatime>
     </div>
     <select name="sp_trangThai">
-        <option value="1">Khóa</option>
-        <option value="2">Khả dụng</option>
+        <option value="1" {{ old('sp_trangThai') == 1 ? "selected" : "" }}>Khóa</option>
+        <option value="2" {{ old('sp_trangThai') == 2 ? "selected" : "" }}>Khả dụng</option>
     </select>
+
+    <div class="form-group">
+        <div class="file-loading">
+            <label>Hình ảnh liên quan sản phẩm</label>
+            <input id="sp_hinhanhlienquan" type="file" name="sp_hinhanhlienquan[]" multiple>
+        </div>
+    </div>
+    
 
     <button type="submit" class="btn btn-primary">Lưu</button>
 </form>
@@ -95,6 +103,24 @@ Thêm mới sản phẩm
             overwriteInitial: false,
             allowedFileExtensions: ["jpg", "gif", "png", "txt"]
         });
+    });
+
+    $("#sp_hinhanhlienquan").fileinput({
+            theme: 'fas',
+            showUpload: false,
+            showCaption: false,
+            browseClass: "btn btn-primary btn-lg",
+            fileType: "any",
+            previewFileIcon: "<i class='glyphicon glyphicon-king'></i>",
+            overwriteInitial: false,
+            allowedFileExtensions: ["jpg", "gif", "png", "txt"]
+        });
+    });
+</script>
+
+<script>
+    $(document).ready(function(){
+    
     });
 </script>
 @endsection

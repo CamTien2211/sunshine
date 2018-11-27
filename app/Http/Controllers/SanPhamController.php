@@ -1,10 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\sanpham;
+use App\SanPham;
 use DB;
 use App\Loai;
+use App\HinhAnh;
 use Storage;
+use Session;
 
 use Illuminate\Http\Request;
 
@@ -29,8 +31,9 @@ class SanPhamController extends Controller
       ->with('danhsachloai', $ds_loai);
   }
 
-  public function edit($id){
-    $sp = SanPham::where("sp_ma", $id)->first();
+  public function edit($id)
+  {
+    $sp = SanPham::where("sp_ma",  $id)->first();
     $ds_loai = Loai::all();
 
     return view('sanpham.edit')
@@ -40,7 +43,12 @@ class SanPhamController extends Controller
 
   public function store(Request $request){
     //dd($request);
-    $sp = new SanPham();
+    $validation = $request->validate([
+      'sp_hinh' => 'required|file|image|mimes:jpeg,png,gif,webp|max:2048',
+      // Cú pháp dùng upload nhiều file
+      'sp_hinhanhlienquan.*' => 'file|image|mimes:jpeg,png,gif,webp|max:2048'
+  ]);
+    $sp = new SanPham()::where("sp_ma", $id) ->first();
     $sp->sp_ten = $request->sp_ten;
     $sp->sp_giaGoc = $request->sp_giaGoc;
     $sp->sp_giaBan = $request->sp_giaBan;
@@ -63,10 +71,35 @@ class SanPhamController extends Controller
        $fileSaved = $file->storeAs('public/photos', $sp->sp_hinh);
      }
 
-     $sp->save();
+     //$sp->save();
+
+     if($request->hasFile('sp_hinhanhlienquan')) {
+       // DELETE các dòng liên quan trong table `HinhAnh`
+       foreach($sp->hinhanhlienquan()->get() as $hinhAnh)
+       {
+           // Xóa hình cũ để tránh rác
+           Storage::delete('public/photos/' . $hinhAnh->ha_ten);
+           // Xóa record
+           $hinhAnh->delete();
+       }
+       $files = $request->sp_hinhanhlienquan;
+       // duyệt từng ảnh và thực hiện lưu
+       foreach ($request->sp_hinhanhlienquan as $index => $file) {
+           
+           $file->storeAs('public/photos', $file->getClientOriginalName());
+           // Tạo đối tưọng HinhAnh
+           $hinhAnh = new HinhAnh();
+           $hinhAnh->sp_ma = $sp->sp_ma;
+           $hinhAnh->ha_stt = ($index + 1);
+           $hinhAnh->ha_ten = $file->getClientOriginalName();
+           $hinhAnh->save();
+       }
+   }
+
+   $sp->save();
 
     Session::flash('alert-info', 'Them moi thanh cong ^.^!!!');
     return redirect()->route('danhsachsanpham.index');
     
   }
-}
+

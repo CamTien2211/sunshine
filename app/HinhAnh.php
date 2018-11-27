@@ -14,6 +14,6 @@ class HinhAnh extends Model
     public $incrementing =false;//khong co cot nao tu tang
 
     public function sanPham(){
-        return $this->belongsTo('App\SanPham','sp_ma','sp_ma')
+        return $this->belongsTo('App\SanPham','sp_ma','sp_ma');
     }
 }

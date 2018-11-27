@@ -8,14 +8,14 @@
 
 
 <h1>Danh sach san pham</h1>
-<table border ="1">
+<table class="table table-bored">
     <thead>
         <tr>
             <th>Ma</th>
             <th>Ten</th>
             <th>Hinhanh</th>
             <th>Thuoc loai</th>
-            
+            <th>Sua-Xoa</th>
         </tr>
     </thead>
     <tbody>
