@@ -40,3 +40,4 @@
     </tbody>
 </table>
 @endsection
+<a href="{{ route('danhsachsanpham.print') }}" class="btn btn-primary">In ấn</a>

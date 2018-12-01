@@ -48,7 +48,8 @@ class SanPhamController extends Controller
       // Cú pháp dùng upload nhiều file
       'sp_hinhanhlienquan.*' => 'file|image|mimes:jpeg,png,gif,webp|max:2048'
   ]);
-    $sp = new SanPham()::where("sp_ma", $id) ->first();
+
+    $sp = new SanPham();//::where("sp_ma", $id) ->first();
     $sp->sp_ten = $request->sp_ten;
     $sp->sp_giaGoc = $request->sp_giaGoc;
     $sp->sp_giaBan = $request->sp_giaBan;
@@ -100,6 +101,21 @@ class SanPhamController extends Controller
 
     Session::flash('alert-info', 'Them moi thanh cong ^.^!!!');
     return redirect()->route('danhsachsanpham.index');
-    
   }
 
+    public function print()
+    {
+    $ds_sanpham = Sanpham::all();
+    $ds_loai    = Loai::all();
+    $data = [
+        'danhsachsanpham' => $ds_sanpham,
+        'danhsachloai'    => $ds_loai,
+    ];
+    return view('sanpham.print')
+        ->with('danhsachsanpham', $ds_sanpham)
+        ->with('danhsachloai', $ds_loai);
+      }
+    
+  
+
+}
