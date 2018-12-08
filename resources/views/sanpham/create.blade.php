@@ -26,9 +26,13 @@ Thêm mới sản phẩm
     {{ csrf_field() }}
     <div class="form-group">
         <label for="l_ma">Loại sản phẩm</label>
-        <select name="l_ma">
-            @foreach($danhsachloai as $loai)
-            <option value="{{ $loai->l_ma }}">{{ $loai->l_ten }}</option>
+        <select name="l_ma" class="form-control">
+        @foreach($danhsachloai as $loai)
+                @if(old('l_ma') == $loai->l_ma)
+                <option value="{{ $loai->l_ma }}" selected>{{ $loai->l_ten }}</option>
+                @else
+                <option value="{{ $loai->l_ma }}">{{ $loai->l_ten }}</option>
+                @endif
             @endforeach
         </select>
     </div>
@@ -42,7 +46,7 @@ Thêm mới sản phẩm
     </div>
     <div class="form-group">
         <label for="sp_giaGoc">Giá bán</label>
-        <input type="text" class="form-control" id="sp_giaBan" name="sp_giaBan" value="{{ old('sp_giaBan') }}">
+        <input type="number" class="form-control" id="sp_giaBan" name="sp_giaBan" value="{{ old('sp_giaBan') }}">
     </div>
     <div class="form-group">
         <div class="file-loading">
@@ -117,6 +121,10 @@ Thêm mới sản phẩm
         });
     });
 </script>
+
+<script src="{{ asset('theme/adminlte/plugins/input-mask/jquery.inputmask.js') }}"></script>
+<script src="{{ asset('theme/adminlte/plugins/input-mask/jquery.inputmask.date.extensions.js') }}"></script>
+<script src="{{ asset('theme/adminlte/plugins/input-mask/jquery.inputmask.extensions.js') }}"></script>
 
 <script>
     $(document).ready(function(){

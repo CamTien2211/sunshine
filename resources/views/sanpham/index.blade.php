@@ -6,8 +6,6 @@
 
 @section('main-content')
 
-
-<h1>Danh sach san pham</h1>
 <table class="table table-bored">
     <thead>
         <tr>
@@ -27,12 +25,12 @@
                 <td>{{ $sp->loaisanpham->l_ten }}</td>
                 <td>
                     <a href="{{ route('danhsachsanpham.edit',['id' => $sp->sp_ma]) }}"
-                    class="btn btn-primary pull-left">Sua</a>
+                    class="btn btn-primary pull-left">Sửa</a>
                     <form method="post" action="{{ route('danhsachsanpham.destroy', ['id' => 
                     $sp->sp_ma]) }}" class="pull-left">
                         <input type="hidden" name="_method" value="DELETE" />
                         {{ csrf_field() }}
-                        <button type="submit" class="btn btn-danger">Xoa</button>
+                        <button type="submit" class="btn btn-danger">Xóa</button>
                         </form>
                     </td>
             </tr>
@@ -41,3 +39,5 @@
 </table>
 @endsection
 <a href="{{ route('danhsachsanpham.print') }}" class="btn btn-primary">In ấn</a>
+<a href="{{ route('danhsachsanpham.excel') }}" class="btn btn-primary">Xuất Excel</a>
+<a href="{{ route('danhsachsanpham.pdf') }}" class="btn btn-primary">Xuất PDF</a>

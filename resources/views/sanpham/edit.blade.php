@@ -1,13 +1,16 @@
 @extends('backend.layouts.index')
+
 @section('title')
 Hiệu chỉnh sản phẩm
 @endsection
+
 @section('custom-css')
 <!-- Các css dành cho thư viện bootstrap-fileinput -->
 <link href="{{ asset('vendor/bootstrap-fileinput/css/fileinput.css') }}" media="all" rel="stylesheet" type="text/css"/>
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" crossorigin="anonymous">
 <link href="{{ asset('vendor/bootstrap-fileinput/themes/explorer-fas/theme.css') }}" media="all" rel="stylesheet" type="text/css"/>
 @endsection
+
 @section('main-content')
 @if ($errors->any())
     <div class="alert alert-danger">
@@ -18,6 +21,7 @@ Hiệu chỉnh sản phẩm
         </ul>
     </div>
 @endif
+
 <form method="post" action="{{ route('danhsachsanpham.update', ['id' => $sp->sp_ma]) }}" enctype="multipart/form-data">
     <input type="hidden" name="_method" value="PUT" />
     {{ csrf_field() }}
@@ -71,6 +75,7 @@ Hiệu chỉnh sản phẩm
         <option value="1" {{ old('sp_trangThai', $sp->sp_trangThai) == 1 ? "selected" : "" }}>Khoa</option>
         <option value="2" {{ old('sp_trangThai', $sp->sp_trangThai) == 2 ? "selected" : "" }}>Kha dung</option>
     </select>
+
     <div class="form-group">
         <div class="file-loading">
             <label>Hình ảnh liên quan sản phẩm</label>
@@ -80,6 +85,7 @@ Hiệu chỉnh sản phẩm
     <button type="submit" class="btn btn-primary">Lưu</button>
 </form>
 @endsection
+
 @section('custom-scripts')
 <!-- Các script dành cho thư viện bootstrap-fileinput -->
 <script src="{{ asset('vendor/bootstrap-fileinput/js/plugins/sortable.js') }}" type="text/javascript"></script>
@@ -87,6 +93,7 @@ Hiệu chỉnh sản phẩm
 <script src="{{ asset('vendor/bootstrap-fileinput/js/locales/fr.js') }}" type="text/javascript"></script>
 <script src="{{ asset('vendor/bootstrap-fileinput/themes/fas/theme.js') }}" type="text/javascript"></script>
 <script src="{{ asset('vendor/bootstrap-fileinput/themes/explorer-fas/theme.js') }}" type="text/javascript"></script>
+
 <script>
     $(document).ready(function() {
         $("#sp_hinh").fileinput({
@@ -115,6 +122,7 @@ Hiệu chỉnh sản phẩm
                 },
             ]
         });
+
         $("#sp_hinhanhlienquan").fileinput({
             theme: 'fas',
             showUpload: false,
@@ -148,13 +156,16 @@ Hiệu chỉnh sản phẩm
         });
     });
 </script>
+
 <!-- Các script dành cho thư viện Mặt nạ nhập liệu InputMask -->
 <script src="{{ asset('theme/adminlte/plugins/input-mask/jquery.inputmask.js') }}"></script>
 <script src="{{ asset('theme/adminlte/plugins/input-mask/jquery.inputmask.date.extensions.js') }}"></script>
 <script src="{{ asset('theme/adminlte/plugins/input-mask/jquery.inputmask.extensions.js') }}"></script>
+
 <script>
 $(document).ready(function(){
     
 });
 </script>
+
 @endsection

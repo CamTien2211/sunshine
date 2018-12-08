@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ví dụ đầu tiên AngularJS</title>
+    <!-- Include thư viện Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+        crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+    <!-- Include script angularJS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+</head>
+<body ng-app="sunshineApp">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6" ng-controller="khachhangController">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">Thông tin khách hàng</div>
+                    <div class="panel-body">
+                        Nhập họ: <input type="text" ng-model="ho"><br>
+                        Nhập tên: <input type="text" ng-model="ten"><br>
+                        <br>
+                        Tên đầy đủ của bạn: {{ fullName() | uppercase }}
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6" ng-controller="sanphamController">
+                <div class="panel panel-info">
+                    <div class="panel-heading">Danh sách sản phẩm</div>
+                    <div class="panel-body">
+                        <ul>
+                                Gõ từ khóa tìm kiếm: <input type="text" ng-model="tukhoatimkiem">
+                            <li ng-repeat="x in danhsachsanpham | filter:tukhoatimkiem">
+                                    {{ x.tensanpham + ', ' + x.loai + ': ' }} {{ x.gia | currency }}
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        // Khởi tạo ứng dụng angularJS
+        var app = angular.module('sunshineApp', []);
+        // Khai báo controller `khachhangController`
+        app.controller('khachhangController', function ($scope) {
+            $scope.ho = "Nguyen";
+            $scope.ten = "Le";
+            $scope.fullName = function () {
+                return $scope.ho + " " + $scope.ten;
+            };
+        });
+        // Khai báo controller `sanphamController`
+        app.controller('sanphamController', function ($scope) {
+            $scope.danhsachsanpham = [{
+                    tensanpham: 'hoa lan',
+                    loai: 'hoa tiệc cưới',
+                    gia: 5000
+                },
+                {
+                    tensanpham: 'hoa hồng',
+                    loai: 'hoa tình yêu',
+                    gia: 2000
+                },
+                {
+                    tensanpham: 'hoa tươi',
+                    loai: 'hoa văn phòng',
+                    gia: 3000
+                }
+            ];
+        });
+    </script>
+</body>
+</html>
