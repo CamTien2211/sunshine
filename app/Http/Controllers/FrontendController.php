@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Loai;
 use DB;
+use Mail;
+use App\Mail\ContactMailer;
 class FrontendController extends Controller
 {
     public function index(Request $request) 
@@ -20,7 +22,7 @@ class FrontendController extends Controller
     return view('frontend.index')
         ->with('ds_top3_newest_loaisanpham', $ds_top3_newest_loaisanpham)
         ->with('danhsachsanpham', $danhsachsanpham);
-    }
+    }   
 /**
  * Hàm query danh sách sản phẩm theo nhiều điều kiện
  */
@@ -37,4 +39,23 @@ class FrontendController extends Controller
     $data = $query->get();
     return $data;
 }
+    public function about()
+    {
+        return view('frontend.pages.about');
+    }
+
+    public function contact()
+{
+    return view('frontend.pages.contact');
+}
+
+//send mail
+public function sendMailContactForm(Request $request)
+{
+    $input = $request->all();
+    Mail::to('michkey221196@gmail.com')
+        ->send(new ContactMailer($input));
+    return $input;
+}
+
 }

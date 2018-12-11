@@ -30,11 +30,13 @@
           <a href="" class="logo">
             <img src="{{ asset('theme/cozastore/images/icons/logo-01.png') }}" alt="IMG-LOGO">
           </a>
-          <!-- Menu desktop -->
+                
+
+      <!-- Menu desktop -->
           <div class="menu-desktop">
             <ul class="main-menu">
               <li class="{{ Request::is('') ? 'active-menu' : '' }}">
-                <a href="">Home</a>
+                <a href="{{ route('frontend.home') }}">Home</a>
               </li>
               <li>
                 <a href="product.html">Shop</a>
@@ -46,13 +48,14 @@
                 <a href="blog.html">Blog</a>
               </li>
               <li class="{{ Request::is('gioi-thieu') ? 'active-menu' : '' }}">
-                <a href="">About</a>
+                <a href="{{ route('frontend.about') }}">About</a>
               </li>
-              <li class="{{ Request::is('lien-he') ? 'active-menu' : '' }}">
-                <a href="">Contact</a>
+              <li>
+                <a href="#">Contact</a>
               </li>
             </ul>
           </div>  
+
           <!-- Icon header -->
           <div class="wrap-icon-header flex-w flex-r-m">
             <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-modal-search">

@@ -31,3 +31,9 @@ Route::get('/admin/danhsachsanpham/print', 'SanPhamController@print')->name('dan
 Route::resource('/admin/danhsachsanpham','SanPhamController');
 
 Route::get('/','FrontendController@index')->name('frontend.home');
+//Giao dien trang gioi thieu about
+Route::get('/gioi-thieu', 'FrontendController@about')->name('frontend.about');
+//giao dien trang lien he
+Route::get('/lien-he', 'FrontendController@contact')->name('frontend.contact');
+//route send mail
+Route::post('/lien-he/goi-loi-nhan', 'FrontendController@sendMailContactForm')->name('frontend.contact.sendMailContactForm');
