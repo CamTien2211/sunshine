@@ -14,8 +14,9 @@
 				C25.395,21.21,25.027,21.575,24.576,21.575L24.576,21.575z"/>
 </svg>
     </div>
-    <div class="col-md-6">{{ ngCart.getTotalItems() }}
-        <ng-pluralize count="ngCart.getTotalItems()" when="{1: 'item', 'other':'items'}"></ng-pluralize>
-        <br />{{ ngCart.totalCost() | currency }}
-    </div>
+<!--them -->
+	<div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart" data-notify="<% ngCart.getTotalItems() %>">
+		<i class="zmdi zmdi-shopping-cart"></i>
+		<% ngCart.totalCost() | currency %>
+	  </div>
 </div>

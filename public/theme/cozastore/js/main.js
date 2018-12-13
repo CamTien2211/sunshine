@@ -111,7 +111,7 @@
 
     /*==================================================================
     [ Show / hide modal search ]*/
-    $('.js-show-modal-search').on('click', function(){
+   /* $('.js-show-modal-search').on('click', function(){
         $('.modal-search-header').addClass('show-modal-search');
         $(this).css('opacity','0');
     });
@@ -123,8 +123,17 @@
 
     $('.container-search-header').on('click', function(e){
         e.stopPropagation();
+    });*/
+    //[ Show modal ]*/
+    $('.js-show-modal').on('click',function(e){
+        e.preventDefault();
+        var sp_ma = $(this).data('sp-ma');
+        $(`.js-modal-${sp_ma}`).addClass('show-modal1');
     });
-
+    $('.js-hide-modal').on('click',function(){
+        var sp_ma = $(this).data('sp-ma');
+        $(`.js-modal-${sp_ma}`).removeClass('show-modal1');
+    });
 
     /*==================================================================
     [ Isotope ]*/

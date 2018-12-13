@@ -37,3 +37,5 @@ Route::get('/gioi-thieu', 'FrontendController@about')->name('frontend.about');
 Route::get('/lien-he', 'FrontendController@contact')->name('frontend.contact');
 //route send mail
 Route::post('/lien-he/goi-loi-nhan', 'FrontendController@sendMailContactForm')->name('frontend.contact.sendMailContactForm');
+
+Route::get('/san-pham/{id}', 'FrontendController@productDetail')->name('frontend.productDetail');

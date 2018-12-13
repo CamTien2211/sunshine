@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Loai;
 use DB;
 use Mail;
+use App\Mau;
+use App\Sanpham;
 use App\Mail\ContactMailer;
 class FrontendController extends Controller
 {
@@ -18,10 +20,21 @@ class FrontendController extends Controller
     
     // Query tìm danh sách sản phẩm
     $danhsachsanpham = $this->searchSanPham($request);
+    // Query Lấy các hình ảnh liên quan của các Sản phẩm đã được lọc
+    $danhsachhinhanhlienquan = DB::table('hinhanh')
+                            ->whereIn('sp_ma', $danhsachsanpham->pluck('sp_ma')->toArray())
+                            ->get();
+    // Query danh sách Loại
+    $danhsachloai = Loai::all();
+    // Query danh sách màu
+    $danhsachmau = Mau::all();
     // Hiển thị view `frontend.index` với dữ liệu truyền vào
     return view('frontend.index')
         ->with('ds_top3_newest_loaisanpham', $ds_top3_newest_loaisanpham)
-        ->with('danhsachsanpham', $danhsachsanpham);
+        ->with('danhsachsanpham', $danhsachsanpham)
+        ->with('danhsachhinhanhlienquan', $danhsachhinhanhlienquan)
+        ->with('danhsachmau', $danhsachmau)
+        ->with('danhsachloai', $danhsachloai);
     }   
 /**
  * Hàm query danh sách sản phẩm theo nhiều điều kiện
