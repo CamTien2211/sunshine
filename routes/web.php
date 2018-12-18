@@ -39,3 +39,10 @@ Route::get('/lien-he', 'FrontendController@contact')->name('frontend.contact');
 Route::post('/lien-he/goi-loi-nhan', 'FrontendController@sendMailContactForm')->name('frontend.contact.sendMailContactForm');
 
 Route::get('/san-pham/{id}', 'FrontendController@productDetail')->name('frontend.productDetail');
+//tao don hang va gui mail xac nhan
+Route::get('/gio-hang', 'FrontendController@cart')->name('frontend.cart');
+Route::post('/dat-hang', 'FrontendController@order')->name('frontend.order');
+Route::get('/dat-hang/hoan-tat', 'FrontendController@orderFinish')->name('frontend.orderFinish');
+
+//checkout
+Route::get('/gio-hang', 'FrontendController@cart')->name('frontend.cart');
