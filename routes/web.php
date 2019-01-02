@@ -46,3 +46,9 @@ Route::get('/dat-hang/hoan-tat', 'FrontendController@orderFinish')->name('fronte
 
 //checkout
 Route::get('/gio-hang', 'FrontendController@cart')->name('frontend.cart');
+
+// Tạo route Báo cáo Đơn hàng
+Route::get('/admin/baocao/donhang', 'BaoCaoController@donhang')->name('baocao.donhang');
+Route::get('/admin/baocao/donhang/data', 'BaoCaoController@donhangData')->name('baocao.donhang.data');
+// dasboard
+Route::resource('/admin/dashboard','BackendController');
